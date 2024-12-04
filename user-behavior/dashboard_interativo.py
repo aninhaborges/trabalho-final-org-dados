@@ -22,6 +22,7 @@ def categorize_age(age):
     else:
         return "Outros"
 
+#Renomeação de colunas
 df.rename(columns={'Age': 'Idade'}, inplace=True)
 df.rename(columns={'Operating System': 'Sistema Operacional'}, inplace=True)
 df.rename(columns={'Screen On Time (hours/day)': 'Tempo de tela ligada (horas/dia)'}, inplace=True)
@@ -61,7 +62,7 @@ st.dataframe(df_filtered)
 st.write("### Estatísticas Descritivas")
 st.write(df_filtered.describe())
 
-# visualizaçõe 
+# visualizações
 st.write("## Visualizações")
 
 # distribuição de tempo de tela
@@ -107,14 +108,14 @@ medias = df_filtered.groupby("Gender")["Tempo de tela ligada (horas/dia)"].mean(
 bars = medias.plot.bar(ax=ax, color=['pink','skyblue'])
 ax.set_title("Tempo Médio de Tela por Gênero")
 ax.set_ylabel("Tempo Médio de Tela (horas/dia)") 
-#Coloca os rótulos nas barras, ou seja, o seu respectivo valor.
+#Colocando os rótulos nas barras, ou seja, o seu respectivo valor.
 for bar in bars.patches: 
     ax.text( bar.get_x() + bar.get_width() / 2, 
             bar.get_height(), 
             f'{bar.get_height():.2f}', 
             ha='center', 
             va='bottom',
-             fontsize=9 ) # Exibindo o gráfico no Streamlit 
+             fontsize=9 ) 
 st.pyplot(fig)
 
 # uso médio de bateria por Sistema Operacional
